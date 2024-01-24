@@ -67,7 +67,7 @@ export const useFetchEstimate = (encodedId: string) => {
 
   return {
     isPending: isPending || data?.status === 'pending',
-    estimate: data?.status === 'success' ? data.estimate : null,
+    estimate: data?.status === 'success' ? data.estimates : null,
     refetch,
   };
 };
