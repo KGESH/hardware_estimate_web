@@ -13,7 +13,7 @@ export const estimateAIAnswerErrorSchema = z.object({
 
 export const estimateAIAnswerSuccessSchema = z.object({
   status: z.literal('success'),
-  estimate: aiAnswerSchema,
+  estimates: aiAnswerSchema.array(),
 });
 
 export const estimateAIAnswerSchema = z.union([
