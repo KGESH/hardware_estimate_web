@@ -1,25 +1,32 @@
 import { z } from 'zod';
 import { aiAnswerSchema } from '@/schemas/aiSchema';
 import { createResponseSchema } from '@/schemas/responseSchema';
+import { hardwareSchema } from '@/schemas/hardwareSchema';
 
-export const estimateAIAnswerPendingSchema = z.object({
+export const aiEstimatePartSchema = z.object({
+  shopId: z.string().uuid(),
+  hardware: hardwareSchema,
+  estimate: aiAnswerSchema,
+});
+
+export const aiEstimatePendingSchema = z.object({
   status: z.literal('pending'),
 });
 
-export const estimateAIAnswerErrorSchema = z.object({
+export const aiEstimateErrorSchema = z.object({
   status: z.literal('error'),
   message: z.string(),
 });
 
-export const estimateAIAnswerSuccessSchema = z.object({
+export const aiEstimateSuccessSchema = z.object({
   status: z.literal('success'),
-  estimates: aiAnswerSchema.array(),
+  estimates: aiEstimatePartSchema.array(),
 });
 
 export const estimateAIAnswerSchema = z.union([
-  estimateAIAnswerPendingSchema,
-  estimateAIAnswerErrorSchema,
-  estimateAIAnswerSuccessSchema,
+  aiEstimatePendingSchema,
+  aiEstimateErrorSchema,
+  aiEstimateSuccessSchema,
 ]);
 
 export const estimateAIResponseSchema = createResponseSchema(
