@@ -3,13 +3,14 @@ import { useFetchEstimate } from '@/hooks/useFetchEstimate';
 import { Estimate } from '@/components/Estimate';
 import { useFetchComputerSpec } from '@/hooks/useFetchComputerSpec';
 import { useRouter } from 'next/navigation';
+import { EstimateRequestDto } from '@/dtos/estimate/estimate.dto';
 
-type Props = { encodedId: string };
+type Props = EstimateRequestDto;
 
-export default function EstimatePanel({ encodedId }: Props) {
+export default function EstimatePanel({ estimateId, encodedId }: Props) {
   const router = useRouter();
   const pcSpecQuery = useFetchComputerSpec(encodedId);
-  const estimateQuery = useFetchEstimate(encodedId);
+  const estimateQuery = useFetchEstimate({ estimateId, encodedId });
 
   if (pcSpecQuery.isPending) return <div>Loading...</div>;
 

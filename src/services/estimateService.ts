@@ -1,13 +1,17 @@
 'use server';
 import { ESTIMATE_BACKEND_ENDPOINT_URL } from '@/constants/urls';
 import { estimateAIResponseSchema } from '@/schemas/estimateSchema';
-import { EstimateAIAnswerDto } from '@/dtos/estimate/estimate.dto';
+import {
+  EstimateAIAnswerDto,
+  EstimateRequestDto,
+} from '@/dtos/estimate/estimate.dto';
 
-export async function getEstimate(
-  encodedId: string,
-): Promise<EstimateAIAnswerDto | null> {
+export async function getEstimate({
+  estimateId,
+  encodedId,
+}: EstimateRequestDto): Promise<EstimateAIAnswerDto | null> {
   const endpoint = new URL(
-    `/estimate/${encodedId}`,
+    `/estimate/${estimateId}/${encodedId}`,
     ESTIMATE_BACKEND_ENDPOINT_URL,
   );
 

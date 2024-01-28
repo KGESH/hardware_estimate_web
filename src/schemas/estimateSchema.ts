@@ -6,7 +6,7 @@ import { hardwareSchema } from '@/schemas/hardwareSchema';
 export const aiEstimatePartSchema = z.object({
   shopId: z.string().uuid(),
   hardware: hardwareSchema,
-  estimate: aiAnswerSchema,
+  aiAnswer: aiAnswerSchema,
 });
 
 export const aiEstimatePendingSchema = z.object({
@@ -32,3 +32,8 @@ export const estimateAIAnswerSchema = z.union([
 export const estimateAIResponseSchema = createResponseSchema(
   estimateAIAnswerSchema,
 );
+
+export const estimateRequestSchema = z.object({
+  estimateId: z.string().uuid(),
+  encodedId: z.string(),
+});
