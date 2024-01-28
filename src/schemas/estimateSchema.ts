@@ -9,8 +9,16 @@ export const aiEstimatePartSchema = z.object({
   aiAnswer: aiAnswerSchema,
 });
 
-export const aiEstimatePendingSchema = z.object({
-  status: z.literal('pending'),
+export const estimatedStatusSchema = z.union([
+  z.literal('estimated'),
+  z.literal('pickup'),
+  z.literal('checking'),
+  z.literal('approved'),
+  z.literal('paid'),
+]);
+
+export const aiEstimateDraftSchema = z.object({
+  status: z.literal('draft'),
 });
 
 export const aiEstimateErrorSchema = z.object({
@@ -19,12 +27,12 @@ export const aiEstimateErrorSchema = z.object({
 });
 
 export const aiEstimateSuccessSchema = z.object({
-  status: z.literal('success'),
+  status: estimatedStatusSchema,
   estimates: aiEstimatePartSchema.array(),
 });
 
 export const estimateAIAnswerSchema = z.union([
-  aiEstimatePendingSchema,
+  aiEstimateDraftSchema,
   aiEstimateErrorSchema,
   aiEstimateSuccessSchema,
 ]);

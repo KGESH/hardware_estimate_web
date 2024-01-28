@@ -10,8 +10,11 @@ export const useFetchEstimate = (args: EstimateRequestDto) => {
   });
 
   return {
-    isPending: isPending || data?.status === 'pending',
-    estimate: data?.status === 'success' ? data.estimates : null,
+    isPending: isPending || data?.status === 'draft',
+    estimate:
+      data && data.status !== 'draft' && data.status !== 'error'
+        ? data.estimates
+        : null,
     refetch,
   };
 };
