@@ -4,7 +4,7 @@ export const hardWareTypeSchema = z.union([
   z.literal('CPU'),
   z.literal('GPU'),
   z.literal('RAM'),
-  z.literal('M/B'),
+  z.literal('MB'),
   z.literal('DISK'),
   z.literal('OTHER'),
 ]);

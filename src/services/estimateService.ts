@@ -8,10 +8,9 @@ import {
 
 export async function getEstimate({
   estimateId,
-  encodedId,
 }: EstimateRequestDto): Promise<EstimateAIAnswerDto | null> {
   const endpoint = new URL(
-    `/estimate/${estimateId}/${encodedId}`,
+    `/estimate/${estimateId}`,
     ESTIMATE_BACKEND_ENDPOINT_URL,
   );
 
