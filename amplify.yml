@@ -3,12 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
+        - npx pnpm install
+        - npx pnpm install --frozen-lockfile
     build:
       commands:
         - env | grep -e __NEXT_PRIVATE_PREBUNDLED_REACT >> .env.production
         - echo "ESTIMATE_BACKEND_ENDPOINT_URL=$ESTIMATE_BACKEND_ENDPOINT_URL" >> .env.production
-        - npm run build
+        - npx pnpm run build
   artifacts:
     baseDirectory: .next
     files:
