@@ -7,8 +7,7 @@ frontend:
         - npx pnpm install --frozen-lockfile
     build:
       commands:
-        - env | grep -e __NEXT_PRIVATE_PREBUNDLED_REACT >> .env.production
-        - echo "ESTIMATE_BACKEND_ENDPOINT_URL=$ESTIMATE_BACKEND_ENDPOINT_URL" >> .env.production
+        - env | grep -e ESTIMATE_BACKEND_ENDPOINT_URL >> .env.production
         - npx pnpm run build
   artifacts:
     baseDirectory: .next
